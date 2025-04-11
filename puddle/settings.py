@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +26,7 @@ SECRET_KEY = 'django-insecure-#4q6@7kn-!s71g)qzn=&+00^9m_guohf)^%h&jj03e6npveuvd
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']  # 或 ['你的服务器IP']，部署后建议更安全地指定域名或 IP
 
 # 登录后重定向的 URL
 LOGIN_URL = '/login/'
@@ -132,6 +133,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')  # collectstatic 使用
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
