@@ -6,7 +6,7 @@ from .forms import EditProfileForm
 
 # Create your views here.
 def home(request):
-    return render(request, 'home.html')
+    return render(request, 'core/home.html')
 
 
 def signup(request):
@@ -15,12 +15,12 @@ def signup(request):
         
         if form.is_valid():
             form.save()
-            return render(request, 'home.html')
+            return render(request, 'core/home.html')
         
     else:
         form = SignupForm()
         
-    return render(request, 'signup.html', {'form': form})
+    return render(request, 'core/signup.html', {'form': form})
 
 # about me view
 @login_required  # 确保只有登录用户才能访问
@@ -29,7 +29,7 @@ def profile(request):
     context = {
         'user': user,  # 传递用户对象到模板
     }
-    return render(request, 'profile.html', context)
+    return render(request, 'core/profile.html', context)
 
 
 # Create your views here.
@@ -51,5 +51,5 @@ def editprofile(request):
             return redirect('profile')  # 修改完回到个人页面
     else:
         form = EditProfileForm(instance=user)
-    return render(request, 'editprofile.html', {'form': form})
+    return render(request, 'core/editprofile.html', {'form': form})
     
