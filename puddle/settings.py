@@ -39,6 +39,8 @@ AUTH_USER_MODEL = 'core.User'  # 确保这行存在
 # Application definition
 
 INSTALLED_APPS = [
+    # 'django_private_chat2',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -46,7 +48,23 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core.apps.CoreConfig',
+
+    'chat',
 ]
+
+# ASGI & websocket
+ASGI_APPLICATION = 'puddle.asgi.application'
+
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
+
+# end ASGI & websocket
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
